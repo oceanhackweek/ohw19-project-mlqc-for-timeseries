@@ -1,5 +1,5 @@
 # ohw19-project-mlqc-for-timeseries
-  Xu Chen
+  Xu Chen  
 Kate von Krusenstiern  
 Leixin Ma  
 Jasmin Nahorniak  
