@@ -1,0 +1,9 @@
+*gsheet
+Icon*
+.idea
+*.pyc
+.DS_Store
+
+.DS_Store
+
+*.ipynb_checkpoints

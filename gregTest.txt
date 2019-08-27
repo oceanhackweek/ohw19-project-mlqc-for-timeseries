@@ -1,2 +1,4 @@
+<<<<<<< HEAD
 test
 add a line by Xu Chen
+second line by XC
