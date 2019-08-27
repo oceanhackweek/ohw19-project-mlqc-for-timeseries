@@ -1,13 +1,15 @@
 # ohw19-project-mlqc-for-timeseries
+
 This is the development repository for the OceanHackWeek 2019 project group focusing on the application of machine learning techniques to QC timeseries data, and compare against established algorithmic approaches (e.g. QARTOD)
 
 ## Authors
 Xu Chen<br>
 Kate von Krusenstiern<br>
 Leixin Ma<br>
-Jasmin Nahorniak<br>
+Jasmine Nahorniak<br>
 Greg Duskek<br>
 Andrew Reed<br>
+Divya Saxena<br>
 
 ## Local Python Environment
 I have added an **environment.yaml** file into the repository which will allow you to setup a local python environment with some standardized python packages using the follow command:
