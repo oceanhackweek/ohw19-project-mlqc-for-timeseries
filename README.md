@@ -5,7 +5,7 @@ This is the development repository for the OceanHackWeek 2019 project group focu
 Xu Chen<br>
 Kate von Krusenstiern<br>
 Leixin Ma<br>
-Jasmin Nahorniak<br>
+Jasmine Nahorniak<br>
 Greg Duskek<br>
 Andrew Reed<br>
 
