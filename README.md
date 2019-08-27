@@ -8,6 +8,7 @@ Leixin Ma<br>
 Jasmine Nahorniak<br>
 Greg Duskek<br>
 Andrew Reed<br>
+Divya Saxena<br>
 
 ## Local Python Environment
 I have added an **environment.yaml** file into the repository which will allow you to setup a local python environment with some standardized python packages using the follow command:
