@@ -1,5 +1,0 @@
-testKVK.txt
-26 Aug 2019
-author: KVONKRUSENSTIERN
-
-test file to push to ohw19-project-mlqc-for-timeseries
