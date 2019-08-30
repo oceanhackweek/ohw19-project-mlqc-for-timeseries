@@ -1,7 +1,8 @@
 import pandas as pd
 import datetime
 import numpy as np
-import matplotlib.pyplot as pyplot
+import matplotlib.pyplot as plt
+import folium
 
 
 def readInWL(filenameIn):
@@ -29,6 +30,7 @@ def readInWL(filenameIn):
 
 
 def initial_data_prep(dataIn, timeStart='2007-01-01 00:00:00', timeEnd='2017-12-31 23:54:00'):
+    import pandas as pd
     """
     Function performs initial data preparation
     such as replacing -999999 with Nans
@@ -45,10 +47,6 @@ def initial_data_prep(dataIn, timeStart='2007-01-01 00:00:00', timeEnd='2017-12-
         data_indexed - a pandas dataframe that has NaNs removed
             and subsampled by time b
     """
-
-    # Check that the data frame in is of the appropriate type
-    if type(dataIn) is not pandas.core.frame.DataFrame:
-        raise TypeError(f'The input file is not a DataFrame.')
 
     if pd.to_datetime(timeStart) > pd.to_datetime(timeEnd):
         raise ValueError(f'The start time {timeStart} is after the ending time {timeEnd}')
@@ -70,6 +68,7 @@ def initial_data_prep(dataIn, timeStart='2007-01-01 00:00:00', timeEnd='2017-12-
 
 
 def remove_extra_datapoints(data_indexed, suppress_fig=False):
+    import matplotlib.pyplot as plt
     """
     Function which removes extra datapoints
     which occur between the expected datapoints.
@@ -91,6 +90,8 @@ def remove_extra_datapoints(data_indexed, suppress_fig=False):
     time_asdt = pd.to_datetime(time_asdatetime)
     # pull out the minutes from the datetime
     minutes = time_asdt.dt.minute
+
+    difftime = np.diff(time_asdt)
 
     # all minutes must be 0, 6, 12, ... 54
     goodminutes = range(0, 60, 6)
@@ -124,6 +125,17 @@ def remove_extra_datapoints(data_indexed, suppress_fig=False):
     return cleaned
 
 
+def findFeatures(df):
+    """
+    Functions outputs dataframe WITHOUT 'verified' column where df is your
+    cleaned dataframe
+    """
+
+    df = df[["primary", "sigma", "backup", "prediction"]]
+
+    return df
+
+
 def findTarget(df):
     """
     Outputs a pandas dataframe with single column of boolean variables
@@ -140,6 +152,28 @@ def findTarget(df):
     goodPts = np.array(1*(df.loc[:, 'verified'] == df.loc[:, 'primary']))
     target = pd.DataFrame(goodPts)
     target.columns = ['goodPts']
-    target.head()
 
     return target
+
+
+def plot_data_sources():
+    """
+    Function which plots the data sources of the 5 following tidal stations:
+        1. Portland, ME
+        2. Boston, MA
+        3. Atlantic City, NJ
+        4. Cape May, NJ
+        5. Lewes, ???
+    """
+    lat = [43.6567, 42.3539, 39.3550, 38.9678, 38.7828]
+    lon = [-70.2467, -71.0503, -74.4183, -74.9597, -75.1192]
+
+    # plot on stamen terrain
+    m = folium.Map(location=[lat[3], lon[3]], tiles='Stamen Terrain', zoom_start=8)
+    #folium.Marker(location=[lat[0], lon[0]], popup='Portland, ME').add_to(m)
+    #folium.Marker(location=[lat[1], lon[1]], popup='Boston, MA').add_to(m)
+    folium.Marker(location=[lat[2], lon[2]], popup='AC').add_to(m)
+    folium.Marker(location=[lat[3], lon[3]], popup='Cape Map').add_to(m)
+    folium.Marker(location=[lat[4], lon[4]], popup='Lewes').add_to(m)
+    # m.save('tideStations_basic_map2.html')
+    m
